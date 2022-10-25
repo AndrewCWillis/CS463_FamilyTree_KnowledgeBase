@@ -32,8 +32,6 @@ age(lilibet, 1).
 age(mark, 74).
 /*Annes son */
 age(peter, 42).
-child(anne, peter).
-child(mark, peter).
 /*Peters wife */
 age(autumn, 44).
 /*Peters children */
@@ -58,10 +56,7 @@ age(eugenie, 32).
 age(edoardo, 38).
 /*Beatrices children*/
 age(sienna, 1).
-child(beatrice, sienna).
-child(edoardo, sienna).
-/*Eugenies Husband*/
-age(jack, 36).
+
 /*Eugenies Children*/
 age(augustII, 1).
 /*Edward*/
@@ -70,7 +65,12 @@ age(sophie, 57).
 /*Edwards children */
 age(louise, 18).
 age(james, 14).
+age(jack, 36).
 
+child(anne, peter).
+child(mark, peter).
+child(beatrice, sienna).
+child(edoardo, sienna).
 child(elizabeth, charles).
 child(elizabeth, andrew).
 child(elizabeth, edward).
@@ -121,14 +121,7 @@ child(sophie, james).
 parent(X, Y) :- child(Y, X).
 grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
 sibling(X, Y) :- parent(X, Z),child(Z, Y),X\==Y.
-
-
-
-
-
-
-
-
+children(X, L) :- findall(Y, parent(Y, X), L).
 
 
 
