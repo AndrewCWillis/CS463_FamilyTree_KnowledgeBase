@@ -129,3 +129,8 @@ children(X, L) :- findall(Y, parent(Y, X), L).
 kthitem(X,[X|_],1).
 kthitem(X,[_|L],K) :- K>1,K2 is K - 1,kthitem(X,L,K2).
 kthchild(X,Y,K) :- children(X,L),member(Y,L),kthitem(Y,L,K).
+nthancestor(X,Y,1) :- parent(X,Y).
+nthancestor(X,Y,N) :- N1 is N-1,N1>0,parent(X,Z),nthancestor(Z,Y,N1).
+nthcousin(X,Y,N) :- nthancestor(X,P,N), 
+    nthancestor(Y,P2,N), 
+    sibling(P,P2). 
