@@ -5,9 +5,10 @@ age(elizabeth, 96).
 age(phillip, 99).
 /*Elizabeths children*/
 age(charles, 73).
+age(anne, 72).
 age(andrew, 62).
 age(edward,58).
-age(anne, 72).
+
 /*Charles*/
 /*Charles wife*/
 age(diana, 36).
@@ -57,6 +58,8 @@ age(edoardo, 38).
 /*Beatrices children*/
 age(sienna, 1).
 
+/*Eugenies Husband*/
+age(jack, 36).
 /*Eugenies Children*/
 age(augustII, 1).
 /*Edward*/
@@ -65,7 +68,8 @@ age(sophie, 57).
 /*Edwards children */
 age(louise, 18).
 age(james, 14).
-age(jack, 36).
+
+
 
 child(anne, peter).
 child(mark, peter).
@@ -122,7 +126,6 @@ parent(X, Y) :- child(Y, X).
 grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
 sibling(X, Y) :- parent(X, Z),child(Z, Y),X\==Y.
 children(X, L) :- findall(Y, parent(Y, X), L).
-
-
-
-
+kthitem(X,[X|_],1).
+kthitem(X,[_|L],K) :- K>1,K2 is K - 1,kthitem(X,L,K2).
+kthchild(X,Y,K) :- children(X,L),member(Y,L),kthitem(Y,L,K).
